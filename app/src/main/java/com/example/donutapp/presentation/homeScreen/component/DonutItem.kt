@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.layout.ContentScale
@@ -36,8 +35,8 @@ import com.example.donutapp.getScreenSizeDp
 import com.example.donutapp.presentation.homeScreen.DonutItemContent
 import com.example.donutapp.presentation.homeScreen.donuts
 import com.example.donutapp.ui.theme.InterFont
-import com.example.donutapp.ui.theme.Item1Color
 import com.example.donutapp.ui.theme.White
+import kotlin.math.roundToInt
 
 @Composable
 fun DonutItem(modifier: Modifier = Modifier, donut: DonutItemContent) {
@@ -76,7 +75,7 @@ fun DonutItem(modifier: Modifier = Modifier, donut: DonutItemContent) {
                         fontFamily = InterFont,
                         fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
-                        color = Color.Black
+                        color = Black
                     )
                 )
                 Text(
@@ -88,7 +87,7 @@ fun DonutItem(modifier: Modifier = Modifier, donut: DonutItemContent) {
                         fontFamily = InterFont,
                         fontWeight = FontWeight.Normal,
                         fontSize = 12.sp,
-                        color = Color.Black,
+                        color = Black,
                         letterSpacing = 0.5.sp
                     )
                 )
@@ -104,12 +103,12 @@ fun DonutItem(modifier: Modifier = Modifier, donut: DonutItemContent) {
                     ) {
                         Text(
                             modifier = Modifier.padding(bottom = 1.dp),
-                            text = "$20",
+                            text = "$ ${donut.price.toInt()}",
                             style = TextStyle(
                                 fontFamily = InterFont,
                                 fontWeight = FontWeight.SemiBold,
                                 fontSize = 14.sp,
-                                color = Color.Black
+                                color = Black
                             )
                         )
                         Spacer(Modifier
@@ -121,12 +120,12 @@ fun DonutItem(modifier: Modifier = Modifier, donut: DonutItemContent) {
 
                     Text(
                         modifier = Modifier,
-                        text = "$16",
+                        text = "$${donut.finalPrice.roundToInt()}",
                         style = TextStyle(
                             fontFamily = InterFont,
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 22.sp,
-                            color = Color.Black
+                            color = Black
                         )
                     )
 

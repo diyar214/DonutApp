@@ -52,6 +52,7 @@ import com.example.donutapp.ui.theme.Item2Color
 import com.example.donutapp.ui.theme.LightPink8DF
 import com.example.donutapp.ui.theme.MainBlack
 import com.example.donutapp.ui.theme.MainPink74
+import kotlin.math.roundToInt
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
@@ -80,9 +81,12 @@ fun HomeScreen(navController: NavHostController) {
                     contentPadding = PaddingValues(start = 38.dp, end = 25.dp)
                 ) {
                     items(donuts) { donut ->
-                        DonutItem(donut = donut, modifier = Modifier.clickable {
-                            navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
-                        })
+                        DonutItem(
+                            donut = donut,
+                            modifier = Modifier.clickable {
+                                navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
+                            },
+                        )
                     }
                 }
 
@@ -265,9 +269,12 @@ fun HomeScreen(navController: NavHostController) {
 //
 //                    }
                     itemsIndexed(donuts) { index: Int, donut: DonutItemContent ->
-                        DonutItem(donut = donut, modifier = Modifier.clickable {
-                            navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
-                        })
+                        DonutItem(
+                            donut = donut,
+                            modifier = Modifier.clickable {
+                                navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
+                            },
+                        )
                         Log.d("itemsIndexed", "HomeScreen: donut:${donut.title} with index:$index")
                     }
                 }
@@ -350,8 +357,12 @@ data class DonutItemContent(
     val imageId: Int,
     val title: String,
     val desc: String,
-    val cardColor: Color
-)
+    val cardColor: Color,
+    val price: Double,
+    val discount: Double,
+) {
+    val finalPrice: Double = (this.price * (1 - this.discount))
+}
 
 val donuts = listOf(
     DonutItemContent(
@@ -359,14 +370,18 @@ val donuts = listOf(
         imageId = R.drawable.strawberry_wheel,
         title = "Strawberry Wheel",
         desc = "These Baked Strawberry Donuts are filled with fresh strawberries...",
-        cardColor = Item1Color
+        cardColor = Item1Color,
+        price = 20.0,
+        discount = 0.05,
     ),
     DonutItemContent(
         id = "2",
         imageId = R.drawable.chocolate_glaze,
         title = "Chocolate Glaze",
         desc = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
-        cardColor = Item2Color
+        cardColor = Item2Color,
+        price = 20.0,
+        discount = 0.20,
     )
 )
 

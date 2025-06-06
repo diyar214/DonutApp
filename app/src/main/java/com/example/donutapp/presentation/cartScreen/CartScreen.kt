@@ -312,7 +312,7 @@ private fun CartContent(
                     ) {
                         Text(
                             modifier = Modifier,
-                            text = "£16",
+                            text = "$${(selectedDonut?.finalPrice?.toInt() ?: 0) * counterState}",
                             style = TextStyle(
                                 fontFamily = InterFont,
                                 fontWeight = FontWeight.SemiBold,
@@ -488,7 +488,7 @@ private fun CartContent(
                         Box(
                             modifier = Modifier
                                 .clickable(
-                                    enabled = counterState > 0
+                                    enabled = counterState > 1
                                 ) {
                                     onDecreaseCounter()
                                 }
@@ -584,7 +584,7 @@ private fun CartContent(
                     ) {
                         Text(
                             modifier = Modifier,
-                            text = "£16",
+                            text = "$${(selectedDonut?.finalPrice?.toInt() ?: 1) * counterState}",
                             style = TextStyle(
                                 fontFamily = InterFont,
                                 fontWeight = FontWeight.SemiBold,

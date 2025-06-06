@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DonutViewModel : ViewModel() {
-    private val _state = MutableStateFlow(0)
+    private val _state = MutableStateFlow(1)
     val state = _state.asStateFlow()
 
     fun fetchData() {
@@ -22,9 +22,6 @@ class DonutViewModel : ViewModel() {
     }
 
     fun onDecreaseCounter() {
-        if (_state.value <= 0) {
-            return
-        }
         _state.update { it - 1 }
     }
 
