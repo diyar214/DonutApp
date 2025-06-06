@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -36,14 +35,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.donutapp.GetScreenSizeDp
 import com.example.donutapp.R
 import com.example.donutapp.Screens
+import com.example.donutapp.getScreenSizeDp
 import com.example.donutapp.presentation.homeScreen.component.DonutItem
 import com.example.donutapp.presentation.homeScreen.component.SmallDonutItem
 import com.example.donutapp.presentation.homeScreen.component.smallDonuts
@@ -57,17 +55,17 @@ import com.example.donutapp.ui.theme.MainPink74
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    val (localScreenWidth, localScreenHeight) = GetScreenSizeDp()
+    val (localScreenWidth, localScreenHeight) = getScreenSizeDp()
     val pixel3_w = 393
     val pixel3_h = 808
     Log.d("local size", "OnboardingScreen:$localScreenWidth X $localScreenHeight ")
 
     val scrollStart = rememberScrollState()
 
-    if (localScreenWidth == pixel3_w && localScreenHeight == pixel3_h){
+    if (localScreenWidth == pixel3_w && localScreenHeight == pixel3_h) {
         Box(
             modifier = Modifier.fillMaxSize()
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -77,12 +75,12 @@ fun HomeScreen(navController: NavHostController) {
             ) {
                 TopBar()
                 LazyRow(
-                    modifier = Modifier.padding( top = 25.dp),
+                    modifier = Modifier.padding(top = 25.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    contentPadding = PaddingValues(  start = 38.dp, end = 25.dp)
+                    contentPadding = PaddingValues(start = 38.dp, end = 25.dp)
                 ) {
-                    items(donuts){donut->
-                        DonutItem(donut= donut, modifier = Modifier.clickable {
+                    items(donuts) { donut ->
+                        DonutItem(donut = donut, modifier = Modifier.clickable {
                             navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
                         })
                     }
@@ -107,10 +105,10 @@ fun HomeScreen(navController: NavHostController) {
                         .padding(top = 25.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
-                    contentPadding = PaddingValues(start = 38.dp,bottom = 10.dp, end = 25.dp)
+                    contentPadding = PaddingValues(start = 38.dp, bottom = 10.dp, end = 25.dp)
                 ) {
-                    items(smallDonuts){ donut->
-                        SmallDonutItem(donut=donut)
+                    items(smallDonuts) { donut ->
+                        SmallDonutItem(donut = donut)
                     }
                 }
             }
@@ -119,8 +117,7 @@ fun HomeScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
                     .height(70.dp)
-                    .background(color = HomeBackground)
-                ,
+                    .background(color = HomeBackground),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -156,11 +153,10 @@ fun HomeScreen(navController: NavHostController) {
 
             }
         }
-    }
-    else if (localScreenWidth < pixel3_w && localScreenHeight < pixel3_h){
+    } else if (localScreenWidth < pixel3_w && localScreenHeight < pixel3_h) {
         Box(
             modifier = Modifier.fillMaxSize()
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -170,12 +166,12 @@ fun HomeScreen(navController: NavHostController) {
             ) {
                 SmallTopBar()
                 LazyRow(
-                    modifier = Modifier.padding( top = 25.dp),
+                    modifier = Modifier.padding(top = 25.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    contentPadding = PaddingValues(  start = 38.dp, end = 25.dp)
+                    contentPadding = PaddingValues(start = 38.dp, end = 25.dp)
                 ) {
-                    items(donuts){donut->
-                        DonutItem(donut= donut, modifier = Modifier.clickable {
+                    items(donuts) { donut ->
+                        DonutItem(donut = donut, modifier = Modifier.clickable {
                             navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
                         })
                     }
@@ -200,10 +196,10 @@ fun HomeScreen(navController: NavHostController) {
                         .padding(top = 25.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
-                    contentPadding = PaddingValues(start = 38.dp,bottom = 10.dp, end = 25.dp)
+                    contentPadding = PaddingValues(start = 38.dp, bottom = 10.dp, end = 25.dp)
                 ) {
-                    items(smallDonuts){ donut->
-                        SmallDonutItem(donut=donut)
+                    items(smallDonuts) { donut ->
+                        SmallDonutItem(donut = donut)
                     }
                 }
             }
@@ -212,8 +208,7 @@ fun HomeScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
                     .height(70.dp)
-                    .background(color = HomeBackground)
-                ,
+                    .background(color = HomeBackground),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -249,11 +244,10 @@ fun HomeScreen(navController: NavHostController) {
 
             }
         }
-    }
-    else{
+    } else {
         Box(
             modifier = Modifier.fillMaxSize()
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -263,16 +257,16 @@ fun HomeScreen(navController: NavHostController) {
             ) {
                 TopBar()
                 LazyRow(
-                    modifier = Modifier.padding( top = 25.dp),
+                    modifier = Modifier.padding(top = 25.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    contentPadding = PaddingValues(  start = 38.dp, end = 25.dp)
+                    contentPadding = PaddingValues(start = 38.dp, end = 25.dp)
                 ) {
 //                    items(donuts){donut->
 //
 //                    }
-                    itemsIndexed(donuts){index: Int, donut:DonutItemContent->
-                        DonutItem(donut= donut, modifier = Modifier.clickable {
-                            navController.navigate("${Screens.CartScreen.rout}/${donut.id  }")
+                    itemsIndexed(donuts) { index: Int, donut: DonutItemContent ->
+                        DonutItem(donut = donut, modifier = Modifier.clickable {
+                            navController.navigate("${Screens.CartScreen.rout}/${donut.id}")
                         })
                         Log.d("itemsIndexed", "HomeScreen: donut:${donut.title} with index:$index")
                     }
@@ -297,10 +291,10 @@ fun HomeScreen(navController: NavHostController) {
                         .padding(top = 25.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
-                    contentPadding = PaddingValues(start = 38.dp,bottom = 10.dp, end = 25.dp)
+                    contentPadding = PaddingValues(start = 38.dp, bottom = 10.dp, end = 25.dp)
                 ) {
-                    items(smallDonuts){ donut->
-                        SmallDonutItem(donut=donut)
+                    items(smallDonuts) { donut ->
+                        SmallDonutItem(donut = donut)
                     }
                 }
             }
@@ -309,8 +303,7 @@ fun HomeScreen(navController: NavHostController) {
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
                     .height(70.dp)
-                    .background(color = HomeBackground)
-                ,
+                    .background(color = HomeBackground),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -353,12 +346,13 @@ fun HomeScreen(navController: NavHostController) {
 }
 
 data class DonutItemContent(
-    val id:String,
-    val imageId :Int,
-    val title:String,
-    val desc:String,
-    val cardColor:Color
+    val id: String,
+    val imageId: Int,
+    val title: String,
+    val desc: String,
+    val cardColor: Color
 )
+
 val donuts = listOf(
     DonutItemContent(
         id = "1",
@@ -368,7 +362,7 @@ val donuts = listOf(
         cardColor = Item1Color
     ),
     DonutItemContent(
-        id ="2",
+        id = "2",
         imageId = R.drawable.chocolate_glaze,
         title = "Chocolate Glaze",
         desc = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
@@ -377,10 +371,8 @@ val donuts = listOf(
 )
 
 
-
-
 @Composable
-private fun TopBar(modifier: Modifier  = Modifier) {
+private fun TopBar(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .padding(start = 38.dp, top = 61.dp, end = 40.dp)
@@ -420,8 +412,7 @@ private fun TopBar(modifier: Modifier  = Modifier) {
                 modifier = Modifier
                     .size(45.dp)
                     .align(Alignment.CenterEnd)
-                    .background(color = LightPink8DF, shape = RoundedCornerShape(15.dp))
-                ,
+                    .background(color = LightPink8DF, shape = RoundedCornerShape(15.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
@@ -453,7 +444,7 @@ private fun TopBar(modifier: Modifier  = Modifier) {
 }
 
 @Composable
-private fun SmallTopBar(modifier: Modifier  = Modifier) {
+private fun SmallTopBar(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .padding(start = 38.dp, top = 61.dp, end = 40.dp)
@@ -493,8 +484,7 @@ private fun SmallTopBar(modifier: Modifier  = Modifier) {
                 modifier = Modifier
                     .size(45.dp)
                     .align(Alignment.CenterEnd)
-                    .background(color = LightPink8DF, shape = RoundedCornerShape(15.dp))
-                ,
+                    .background(color = LightPink8DF, shape = RoundedCornerShape(15.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
@@ -527,8 +517,8 @@ private fun SmallTopBar(modifier: Modifier  = Modifier) {
 
 
 @Preview(name = "figma", device = "spec:width=428dp,height=926dp,dpi=420")
-@Preview(name = "PHONE",device = Devices.PHONE)
-@Preview(name = "PIXEL_4",device = Devices.PIXEL_4)
+@Preview(name = "PHONE", device = Devices.PHONE)
+@Preview(name = "PIXEL_4", device = Devices.PIXEL_4)
 @Preview(name = "pixel 3", device = "spec:width=393dp,height=808dp,dpi=420")
 @Preview(name = "small phone", device = "spec:width=360dp,height=640dp,dpi=420")
 @Composable

@@ -14,12 +14,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.donutapp.presentation.cartScreen.CartScreen
-import com.example.donutapp.presentation.homeScreen.DonutItemContent
 import com.example.donutapp.presentation.homeScreen.HomeScreen
 import com.example.donutapp.presentation.onboardingScreen.OnboardingScreen
 import com.example.donutapp.ui.theme.DonutAppTheme
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +28,11 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
 
-                    NavHost(navController = navController, startDestination = Screens.OnBoardingScreen.rout, modifier = Modifier.padding(innerPadding)) {
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screens.OnBoardingScreen.rout,
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
                         composable(
                             Screens.OnBoardingScreen.rout,
                         ) {
@@ -40,10 +41,10 @@ class MainActivity : ComponentActivity() {
                         composable(Screens.HomeScreen.rout) { HomeScreen(navController) }
                         composable(
                             route = "${Screens.CartScreen.rout}/{donutId}",
-                            arguments = listOf(navArgument("donutId"){type = NavType.StringType})
-                        ){backStackEntry->
-                            val donutId = backStackEntry.arguments?.getString("donutId")?:""
-                            CartScreen(navController,donutId)
+                            arguments = listOf(navArgument("donutId") { type = NavType.StringType })
+                        ) { backStackEntry ->
+                            val donutId = backStackEntry.arguments?.getString("donutId") ?: ""
+                            CartScreen(navController, donutId)
                         }
                     }
                 }

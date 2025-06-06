@@ -39,8 +39,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.donutapp.DonutViewModel
-import com.example.donutapp.GetScreenSizeDp
 import com.example.donutapp.R
+import com.example.donutapp.getScreenSizeDp
 import com.example.donutapp.presentation.homeScreen.DonutItemContent
 import com.example.donutapp.presentation.homeScreen.donuts
 import com.example.donutapp.ui.theme.InterFont
@@ -49,7 +49,6 @@ import com.example.donutapp.ui.theme.MainBlack
 import com.example.donutapp.ui.theme.MainPink74
 import com.example.donutapp.ui.theme.White
 import org.koin.androidx.compose.koinViewModel
-import kotlin.reflect.KFunction0
 
 @Composable
 fun CartScreen(
@@ -66,7 +65,7 @@ fun CartScreen(
         counterState = counter,
         onIncreaseCounter = {
             viewModel.onIncreaseCounter()
-                            },
+        },
         onDecreaseCounter = {
             viewModel.onDecreaseCounter()
         }
@@ -79,10 +78,10 @@ private fun CartContent(
     navController: NavHostController,
     selectedDonut: DonutItemContent?,
     counterState: Int,
-    onIncreaseCounter: ()->Unit,
-    onDecreaseCounter: ()->Unit,
+    onIncreaseCounter: () -> Unit,
+    onDecreaseCounter: () -> Unit,
 ) {
-    val (localScreenWidth, localScreenHeight) = GetScreenSizeDp()
+    val (localScreenWidth, localScreenHeight) = getScreenSizeDp()
     val pixel3_w = 393
     val pixel3_h = 808
     val small_w = 360
@@ -358,8 +357,7 @@ private fun CartContent(
 
 
         }
-    }
-    else {
+    } else {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -489,7 +487,9 @@ private fun CartContent(
                     ) {
                         Box(
                             modifier = Modifier
-                                .clickable {
+                                .clickable(
+                                    enabled = counterState > 0
+                                ) {
                                     onDecreaseCounter()
                                 }
                                 .size(45.dp)
@@ -632,15 +632,9 @@ private fun CartContent(
     }
 }
 
-//@Composable
-//fun CartContent() {
-//
-//}
-
-
 @Preview(name = "figma", device = "spec:width=428dp,height=926dp,dpi=420")
-@Preview(name = "PHONE",device = Devices.PHONE)
-@Preview(name = "PIXEL_4",device = Devices.PIXEL_4)
+@Preview(name = "PHONE", device = Devices.PHONE)
+@Preview(name = "PIXEL_4", device = Devices.PIXEL_4)
 @Preview(name = "pixel 3", device = "spec:width=393dp,height=808dp,dpi=420")
 @Preview(name = "small phone", device = "spec:width=360dp,height=640dp,dpi=420")
 @Composable

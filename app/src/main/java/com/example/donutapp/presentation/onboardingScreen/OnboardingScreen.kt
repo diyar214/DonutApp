@@ -38,9 +38,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.donutapp.GetScreenSizeDp
 import com.example.donutapp.R
 import com.example.donutapp.Screens
+import com.example.donutapp.getScreenSizeDp
 import com.example.donutapp.ui.theme.InterFont
 import com.example.donutapp.ui.theme.LightPink8DF
 import com.example.donutapp.ui.theme.MainPink74
@@ -49,7 +49,7 @@ import com.example.donutapp.ui.theme.White
 
 @Composable
 fun OnboardingScreen(navController: NavHostController) {
-    val (localScreenWidth, localScreenHeight) = GetScreenSizeDp()
+    val (localScreenWidth, localScreenHeight) = getScreenSizeDp()
     val pixel3_w = 393
     val pixel3_h = 808
     val small_w = 360

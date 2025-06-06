@@ -31,8 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.donutapp.GetScreenSizeDp
 import com.example.donutapp.R
+import com.example.donutapp.getScreenSizeDp
 import com.example.donutapp.presentation.homeScreen.DonutItemContent
 import com.example.donutapp.presentation.homeScreen.donuts
 import com.example.donutapp.ui.theme.InterFont
@@ -40,8 +40,8 @@ import com.example.donutapp.ui.theme.Item1Color
 import com.example.donutapp.ui.theme.White
 
 @Composable
-fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
-    val (localScreenWidth, localScreenHeight) = GetScreenSizeDp()
+fun DonutItem(modifier: Modifier = Modifier, donut: DonutItemContent) {
+    val (localScreenWidth, localScreenHeight) = getScreenSizeDp()
     val pixel3_w = 393
     val pixel3_h = 808
     val small_w = 360
@@ -50,7 +50,7 @@ fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
         modifier = modifier
             .width(230.dp)
             .height(325.dp),
-    ){
+    ) {
         Box(
             modifier = Modifier
                 .background(
@@ -63,12 +63,12 @@ fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
                 .padding(15.dp)
         ) {
 
-            Column (
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomStart)
                     .padding(start = 5.dp)
-            ){
+            ) {
                 Text(
                     modifier = Modifier.padding(bottom = 9.dp),
                     text = donut.title,
@@ -92,15 +92,16 @@ fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
                         letterSpacing = 0.5.sp
                     )
                 )
-                Row (
+                Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
-                ){
+                ) {
                     Box(
                         modifier = Modifier
-                            .align(Alignment.Bottom).alpha(0.6f),
+                            .align(Alignment.Bottom)
+                            .alpha(0.6f),
                         contentAlignment = Alignment.Center
-                    ){
+                    ) {
                         Text(
                             modifier = Modifier.padding(bottom = 1.dp),
                             text = "$20",
@@ -111,7 +112,10 @@ fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
                                 color = Color.Black
                             )
                         )
-                        Spacer(Modifier.width(25.dp).height(1.dp).background(Black))
+                        Spacer(Modifier
+                            .width(25.dp)
+                            .height(1.dp)
+                            .background(Black))
                     }
                     Spacer(Modifier.width(5.dp))
 
@@ -134,7 +138,7 @@ fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
                     .size(35.dp)
                     .background(color = White, shape = RoundedCornerShape(100.dp)),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Image(
                     modifier = Modifier
                         .size(20.dp, 18.dp)
@@ -145,26 +149,24 @@ fun DonutItem(modifier: Modifier = Modifier,donut:DonutItemContent) {
             }
 
         }
-        Box{
+        Box {
             val size = if (donut.id == "2") {
                 180
             } else {
                 170
             }
 
-            val offSit:Pair<Int,Int> =if (donut.id == "2") {
-                Pair(80,30)
+            val offSit: Pair<Int, Int> = if (donut.id == "2") {
+                Pair(80, 30)
             } else {
-                Pair(70,30)
+                Pair(70, 30)
             }
             Box(
                 modifier = Modifier
                     .size(size.dp)
-                    .offset(x = offSit.first.dp, y = offSit.second.dp)
-
-                ,
+                    .offset(x = offSit.first.dp, y = offSit.second.dp),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Image(
                     modifier = Modifier.fillMaxSize(),
                     painter = painterResource(donut.imageId),
